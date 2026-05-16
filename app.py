@@ -160,14 +160,16 @@ dias = max(delta.days, 0)
 horas = max((delta.seconds // 3600), 0)
 minutos = max(((delta.seconds % 3600) // 60), 0)
 
-cd_html = "".join(
-    f'<div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);'
-    f'border-radius:10px;padding:12px 18px;text-align:center;min-width:72px">'
-    f'<div style="font-family:Bebas Neue,sans-serif;font-size:2.2rem;color:#fff;line-height:1">{v}</div>'
-    f'<div style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase">{l}</div>'
-    f'</div>'
-    for v, l in [(dias, "Días"), (horas, "Horas"), (minutos, "Min")]
-)
+cd_items = []
+for v, l in [(dias, "Días"), (horas, "Horas"), (minutos, "Min")]:
+    cd_items.append(
+        '<div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);'
+        'border-radius:10px;padding:12px 18px;text-align:center;min-width:72px">'
+        f'<div style="font-family:Bebas Neue,sans-serif;font-size:2.2rem;color:#fff;line-height:1">{v}</div>'
+        f'<div style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase">{l}</div>'
+        '</div>'
+    )
+cd_html = "".join(cd_items)
 
 st.markdown(f"""
 <div class="hero">
