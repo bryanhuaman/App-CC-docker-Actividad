@@ -160,6 +160,15 @@ dias = max(delta.days, 0)
 horas = max((delta.seconds // 3600), 0)
 minutos = max(((delta.seconds % 3600) // 60), 0)
 
+cd_html = "".join(
+    f'<div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);'
+    f'border-radius:10px;padding:12px 18px;text-align:center;min-width:72px">'
+    f'<div style="font-family:Bebas Neue,sans-serif;font-size:2.2rem;color:#fff;line-height:1">{v}</div>'
+    f'<div style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase">{l}</div>'
+    f'</div>'
+    for v, l in [(dias, "Días"), (horas, "Horas"), (minutos, "Min")]
+)
+
 st.markdown(f"""
 <div class="hero">
   <div style="display:inline-block;background:#D4A017;color:#000;font-size:11px;font-weight:700;
@@ -169,11 +178,7 @@ st.markdown(f"""
   <h1>EL MUNDIAL MÁS GRANDE <span>DE LA HISTORIA</span></h1>
   <p>🇺🇸 Estados Unidos &nbsp;·&nbsp; 🇲🇽 México &nbsp;·&nbsp; 🇨🇦 Canadá &nbsp;|&nbsp; 11 JUN – 19 JUL 2026</p>
   <div style="display:flex;justify-content:center;gap:12px;margin-top:1.5rem;flex-wrap:wrap">
-    {''.join(f"""<div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);
-        border-radius:10px;padding:12px 18px;text-align:center;min-width:72px">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#fff;line-height:1">{v}</div>
-      <div style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase">{l}</div>
-    </div>""" for v, l in [(dias, "Días"), (horas, "Horas"), (minutos, "Min")])}
+    {cd_html}
   </div>
 </div>
 """, unsafe_allow_html=True)
